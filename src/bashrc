@@ -1,0 +1,22 @@
+
+############################### my settings ###############################33
+# For SecureCRT termial.
+if [ "$TERM" = "xterm" ]
+then
+	export TERM=xterm-256color
+fi
+
+# aliases
+alias ll='ls -lF --color=auto'
+alias l.='ls -d .* --color=auto'
+# alias l='ls -CF --color=auto'
+alias todo='vi /home/wanghan/notes/todo.mynote'
+alias mcs='vi /home/wanghan/notes/mycheatsheet.mynote'
+alias memo='vi /home/wanghan/notes/memo.mynote'
+
+alias ali='ssh wanghan@39.107.109.141'
+export aliip=39.107.109.141
+export GITURL=http://Gorilla@39.107.109.141:12500
+
+alias cdvs='cd ~/Documents/"Visual Studio 2017"/Projects'
+export VSDIR='~/Documents/"Visual Studio 2017"/Projects'
