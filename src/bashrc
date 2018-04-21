@@ -17,6 +17,7 @@ alias memo='vi /home/wanghan/notes/memo.mynote'
 alias ali='ssh wanghan@39.107.109.141'
 export aliip=39.107.109.141
 export GITURL=http://Gorilla@39.107.109.141:12500
+export GITHUB=https://github.com/Voodoo-Boy
 
 alias cdvs='cd ~/Documents/"Visual Studio 2017"/Projects'
 export VSDIR='~/Documents/"Visual Studio 2017"/Projects'
