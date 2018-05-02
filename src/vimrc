@@ -127,6 +127,8 @@ autocmd filetype json nnoremap <leader>f :call FormatJSON()<CR>
 
 """" Customized Comment highlights
 " Clang
+autocmd filetype c,cpp syn match   myLINK   "https\=://\S*"
+autocmd filetype c,cpp syn keyword myREF    contained REF
 autocmd filetype c,cpp syn keyword myDEBUG  contained DEBUG
 autocmd filetype c,cpp syn keyword myTODO   contained TODO
 autocmd filetype c,cpp syn keyword myNOTE   contained NOTE
@@ -139,6 +141,8 @@ highlight myTODO    cterm=bold              ctermfg=Yellow      ctermbg=none
 highlight myNOTE    cterm=bold              ctermfg=Blue        ctermbg=none
 highlight myLEARN   cterm=bold,standout     ctermfg=Yellow      ctermbg=none
 highlight myNAME    cterm=italic,underline  ctermfg=DarkGreen   ctermbg=none
+highlight myREF     cterm=bold,underline    ctermfg=225         ctermbg=none
+highlight link myLINK myREF
 
 """" Tab2Space & Space2Tab
 :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
