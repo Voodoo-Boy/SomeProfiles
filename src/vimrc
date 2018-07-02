@@ -6,6 +6,7 @@ filetype indent plugin on	" turn on filtype detection, indent, plugin.
 set ruler		" line number, column number, relative position at right bottom.
 set wrap		" wrap too long line.
 set hls			" highlight search results.
+set noincsearch	" highlight search results.
 set noshowmode	" we use lightline plugin instead of default status line.
 set tabstop=4	" tab width=4.
 set shiftwidth=4
