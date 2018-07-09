@@ -20,6 +20,7 @@ set laststatus=2	" always display status line.
 set scrolloff=0		" force no line above and below cursor when scrolling.
 syntax on
 autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o		" turn off automatically comment next line.
+autocmd Filetype cs setlocal syntax=cpp		" use cpp syntax for c# to enable folding.
 " set encoding=latin1			" terminal output encoding
 " set fileencoding=latin1		" file output encoding
 
