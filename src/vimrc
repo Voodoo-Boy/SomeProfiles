@@ -1,5 +1,5 @@
 """" Desc: wanghan's .vimrc
-"""" Date: 2018.04.11
+"""" Date: 2018.07.17
 
 """" General settings
 filetype indent plugin on	" turn on filtype detection, indent, plugin.
@@ -10,6 +10,7 @@ set noincsearch	" highlight search results.
 set noshowmode	" we use lightline plugin instead of default status line.
 set tabstop=4	" tab width=4.
 set shiftwidth=4
+set expandtab	" On pressing tab, insert 4 spaces
 set showmatch	" show match brackets.
 "set cindent	" this is automatically set for .c/.cpp/.C filetype.
 set cinoptions=g-1	" cindent style.
@@ -23,6 +24,7 @@ autocmd Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o		
 autocmd Filetype cs setlocal syntax=cpp		" use cpp syntax for c# to enable folding.
 " set encoding=latin1			" terminal output encoding
 " set fileencoding=latin1		" file output encoding
+set lcs=tab:>-,trail:-      " Set chars to display invisible characters
 
 """" Remeber last exit postion for file
 " Tell vim to remember certain things when we exit
@@ -119,6 +121,12 @@ nnoremap <leader>- :vertical resize -4<CR>
 nnoremap <leader>0 <C-w>=
 "double click <Esc> to set nohls
 nnoremap <Esc><Esc> :nohlsearch<Bar>:echo<CR>
+"<leader>b to build.
+nnoremap <leader>b :ccl<CR><C-W><C-O>:w<CR>:silent make\|redraw!\|copen<CR><C-W>t<C-W>H
+"<leader><Enter> to next error.
+nnoremap <leader><Enter> :cnext<CR>
+"<leader>i to display invisible characters.
+nnoremap <leader>i :set list!<CR>
 
 """" Misc
 
