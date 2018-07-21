@@ -5,6 +5,7 @@
 " 1. platform compatibility
 " 2. font
 " 3. color
+" 3. use system clipboard
 
 " {{{ Gvim
 set langmenu=en_US                  " Set language to english
@@ -71,8 +72,8 @@ augroup end
 " {{{ Plugin
 " Install vim-plugin if not exist.
 if empty(glob('$USERPROFILE/vimfiles/autoload/plug.vim'))
-  silent !curl -fLo $USERPROFILE/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    exe 'silent !curl -fLo '.$USERPROFILE.'\vimfiles\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Plugins we use
