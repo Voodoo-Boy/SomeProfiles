@@ -12,6 +12,9 @@ set langmenu=en_US                  " Set language to english
 let $LANG='en_US.UTF-8'
 set clipboard+=unnamed              " Add system clipboard to vim
 
+" Auto copy text selected by mouse
+set guioptions+=A
+
 " Cursor Setting
 set guicursor=a:block-Cursor
 highlight Cursor guifg=white guibg=black
@@ -96,7 +99,7 @@ call plug#end()
 " <leader>s edit .vimrc
 map <leader>s :Vimrc<CR>
 " \<space> source .vimrc
-map <leader><space> :source ~/_vimrc<CR>
+map <leader><space> :source $MYVIMRC<CR>
 " <F2> for toggle paste mode
 set pastetoggle=<F2>
 " When yank in visual mode, cursor will stay at the last character.
@@ -155,16 +158,48 @@ function! ToggleAutoComment()
 endfunction
 command! Comment call ToggleAutoComment()
 
-"""" Tab2Space & Space2Tab
+" Tab2Space & Space2Tab
 :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
 :command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
 
+" Open vimrc
 if has('win32')
     let VimrcFile="~/_vimrc"
 else
     let VimrcFile="~/.vimrc"
 endif
 command! Vimrc execute 'e '.VimrcFile
+
+" Open git-bash
+" Get both x64/x86 "Program Files" path
+if !exists("g:ProgramFilesPath64")
+    let g:ProgramFilesPath64=substitute(substitute(system("echo %ProgramW6432%"), '[\r\n]\+', '', ''), '\s\+$', '', '')
+endif
+if !exists("g:ProgramFilesPath32")
+    let g:ProgramFilesPath32=substitute(substitute(system("echo %ProgramFiles(x86)%"), '[\r\n]\+', '', ''), '\s\+$', '', '')
+endif
+function! OpenGitBash()
+    if has('win32')
+        let a:GitExeutePath="/Git/git-bash.exe"
+        " Check if git-bash is installed.
+        if !empty(g:ProgramFilesPath64) && !empty(glob(g:ProgramFilesPath64.a:GitExeutePath))
+            let a:DefaultShell=&shell
+            let &shell=g:ProgramFilesPath64.a:GitExeutePath
+            silent! shell
+            let &shell=a:DefaultShell
+        elseif !empty(g:ProgramFilesPath32) && !empty(glob(g:ProgramFilesPath32.a:GitExeutePath))
+            let a:DefaultShell=&shell
+            let &shell=g:ProgramFilesPath32.a:GitExeutePath
+            silent! shell
+            let &shell=a:DefaultShell
+        else
+            echo "git-bash not installed!"
+        endif
+    else
+        echo "Not on win32 platform!"
+    endif
+endfunction
+command! GitBash call OpenGitBash()
 " }}}
 
 " {{{ Misc
