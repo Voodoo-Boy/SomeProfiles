@@ -5,22 +5,41 @@
 " 1. platform compatibility
 " 2. font
 " 3. color
-" 3. use system clipboard
+" 4. use system clipboard
+" 5. open url left click mouse
 
 " {{{ Gvim
+" language
 set langmenu=en_US                  " Set language to english
 let $LANG='en_US.UTF-8'
-set clipboard+=unnamed              " Add system clipboard to vim
 
-" Auto copy text selected by mouse
-set guioptions+=A
+" clipboard
+set clipboard+=unnamed              " Add system clipboard to vim
 
 " Cursor Setting
 set guicursor=a:block-Cursor
 highlight Cursor guifg=white guibg=black
-set guicursor+=i:block-iCursor
-highlight iCursor guifg=white guibg=steelblue
 set guicursor+=n-v-i-c:blinkwait600-blinkon600-blinkoff350    "blinkwait: delay before cursor start blinking, blinkon/off: cursor the time that show/not show
+
+" Auto copy text selected by mouse
+set guioptions+=A
+
+" Menu Setting
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+set guioptions-=T                   " Remove tool bar
+set guioptions-=m                   " Remove menu bar
+set guioptions-=L                   " Remove left-hand scrollbar
+set guioptions-=r                   " Remove right-hand scrollbar
+set guioptions-=b                   " Remove bottom scrollbar
+set guioptions-=e                   " Remove gui tab label
+
+" Window Setting
+set splitbelow                      " Split horizontal window to below
+set splitright                      " Split vertical window to right
+set winaltkeys=no                   " Disable alt shortcut on windows
+au GUIEnter * sim ~x                " Maximum window when gvim startup
+set guifont=Ubuntu\ Mono:h12:cDEFAULT
 " }}}
 
 " {{{ General
@@ -42,6 +61,7 @@ set foldlevel=99                    " set fold level to not fold at first
 set cursorline                      " highlight current line
 set laststatus=2                    " always display status line
 set scrolloff=0                     " force no line above and below cursor when scrolling
+set autochdir                       " auto change current work directory to the location of current file
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
 set encoding=latin1                 " default encoding of input
 " set fileencoding=latin1           " default encoding for save file
@@ -79,20 +99,32 @@ if empty(glob('$USERPROFILE/vimfiles/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Plugins we use
 call plug#begin()
-Plug 'ctrlpvim/ctrlp.vim'				" fuzzy find file and open.
-Plug 'itchyny/lightline.vim'			" great status line.
-Plug 'tomtom/tcomment_vim'				" comment wrapped region.
-Plug 'ntpeters/vim-better-whitespace'	" display annoying whitespaces.
-" Plug 'scrooloose/nerdtree'				" File explorer.
-" Plug 'lrvick/Conque-Shell'				" run shell inside vim.
-" Plug 'ervandew/supertab'				" tab to complete.
-"Plug 'vim-syntastic/syntastic'			" syntax checker.
-" Plug 'majutsushi/tagbar'				" tags in side bar, function list.
-" Plug 'jiangmiao/auto-pairs'				" complete braces automatically.
-"Plug 'terryma/vim-multiple-cursors'		" multiple cursors.
+" Plugins
+Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find file and open.         'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'            " great status line.                'https://github.com/itchyny/lightline.vim'
+Plug 'tomtom/tcomment_vim'              " comment wrapped region.           'https://github.com/tomtom/tcomment_vim'
+Plug 'ntpeters/vim-better-whitespace'   " display annoying whitespaces.     'https://github.com/ntpeters/vim-better-whitespace'
+" Plug 'scrooloose/nerdtree'            " File explorer.
+" Plug 'lrvick/Conque-Shell'            " run shell inside vim.
+" Plug 'ervandew/supertab'              " tab to complete.
+"Plug 'vim-syntastic/syntastic'         " syntax checker.
+" Plug 'majutsushi/tagbar'              " tags in side bar, function list.
+" Plug 'jiangmiao/auto-pairs'           " complete braces automatically.
+"Plug 'terryma/vim-multiple-cursors'    " multiple cursors.
+
+" Color Schemes
+Plug 'nightsense/snow'              " 'https://github.com/nightsense/snow'
+" Plug 'logico-dev/typewriter'        " 'https://github.com/logico-dev/typewriter'
 call plug#end()
+
+" Plugin Setting
+
+" Color Schemes Setting
+" snow
+colorscheme snow
+set background=dark     " backgournd=light
+let g:lightline = { 'colorscheme': 'snow_dark' }
 " }}}
 
 " {{{ Key Mapping
