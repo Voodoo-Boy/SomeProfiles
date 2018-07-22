@@ -2,9 +2,7 @@
 " Date: 2018.07.23
 
 " TODO
-" 1. platform compatibility
-" 2. font
-" 3. color
+" 3. color palette
 " 4. use system clipboard
 " 5. open url left click mouse
 
@@ -83,12 +81,14 @@ augroup END
 augroup wanghan_vim
     " Remove all other autocmds
     au!
-    " Enable marker and fold all maker for vim files
-    au filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
-    " turn off automatically comment next line
-    au filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-    " use cpp syntax for c# to enable folding
-    au filetype cs setlocal syntax=cpp
+	" Enable marker and fold all maker for vim files
+    au Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
+    " Clear all buffers when exit
+    au VimLeavePre * exe '%bd'
+    " Turn off automatically comment next line
+    au Filetype * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    " Use cpp syntax for c# to enable folding
+    au Filetype cs setlocal syntax=cpp
 augroup end
 " }}}
 
@@ -137,11 +137,17 @@ set pastetoggle=<F2>
 " When yank in visual mode, cursor will stay at the last character.
 vnoremap y y`]
 " go to next/previous tab.
-nnoremap <leader>[ :tabp<CR>
-nnoremap <leader>] :tabn<CR>
-" go to next/previous buffer.
-nnoremap <C-[><C-b> :bp<CR>
-nnoremap <C-]><C-b> :bn<CR>
+nnoremap <C-s>h :tabp<CR>
+nnoremap <C-s><C-h> :tabp<CR>
+nnoremap <C-s>l :tabn<CR>
+nnoremap <C-s><C-l> :tabn<CR>
+" go to next, previous, last edited buffer.
+nnoremap <C-s>j :bn<CR>
+nnoremap <C-s><C-j> :bn<CR>
+nnoremap <C-s>k :bp<CR>
+nnoremap <C-s><C-k> :bp<CR>
+nnoremap <C-s>s :b#<CR>
+nnoremap <C-s><C-s> :b#<CR>
 " resize splited window.
 nnoremap <leader>= :vertical resize +4<CR>
 nnoremap <leader>- :vertical resize -4<CR>
