@@ -2,9 +2,7 @@
 " Date: 2018.07.23
 
 " TODO
-" 3. color palette
-" 4. use system clipboard
-" 5. open url left click mouse
+" 1. build
 
 " {{{ Gvim
 " language
@@ -20,7 +18,7 @@ highlight Cursor guifg=white guibg=black
 set guicursor+=n-v-i-c:blinkwait600-blinkon600-blinkoff350    "blinkwait: delay before cursor start blinking, blinkon/off: cursor the time that show/not show
 
 " Auto copy text selected by mouse
-set guioptions+=A
+set guioptions+=a
 
 " Menu Setting
 source $VIMRUNTIME/delmenu.vim
@@ -31,12 +29,14 @@ set guioptions-=L                   " Remove left-hand scrollbar
 set guioptions-=r                   " Remove right-hand scrollbar
 set guioptions-=b                   " Remove bottom scrollbar
 set guioptions-=e                   " Remove gui tab label
+set guioptions-=L                   " Remove left-hand scrollbar
 
 " Window Setting
 set splitbelow                      " Split horizontal window to below
 set splitright                      " Split vertical window to right
 set winaltkeys=no                   " Disable alt shortcut on windows
 au GUIEnter * sim ~x                " Maximum window when gvim startup
+au SourceCmd _vimrc sim ~x          " Maximum window when relaod .vimrc
 set guifont=Ubuntu\ Mono:h12:cDEFAULT
 " }}}
 
@@ -60,6 +60,7 @@ set cursorline                      " highlight current line
 set laststatus=2                    " always display status line
 set scrolloff=0                     " force no line above and below cursor when scrolling
 set autochdir                       " auto change current work directory to the location of current file
+cd $HOME                            " set default working directory to $HOME directory of user
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
 set encoding=latin1                 " default encoding of input
 " set fileencoding=latin1           " default encoding for save file
@@ -119,12 +120,19 @@ Plug 'nightsense/snow'              " 'https://github.com/nightsense/snow'
 call plug#end()
 
 " Plugin Setting
+" lightline: Display full path of file;
+"            Colorscheme=snow_dark
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \ },
+      \ 'colorscheme': 'snow_dark'
+      \ }
 
 " Color Schemes Setting
 " snow
 colorscheme snow
 set background=dark     " backgournd=light
-let g:lightline = { 'colorscheme': 'snow_dark' }
 " }}}
 
 " {{{ Key Mapping
@@ -171,15 +179,15 @@ autocmd filetype c,cpp syn keyword myTODO   contained TODO
 autocmd filetype c,cpp syn keyword myNOTE   contained NOTE
 autocmd filetype c,cpp syn keyword myLEARN  contained LEARN
 autocmd filetype c,cpp syn keyword myNAME   contained WHAN Whan whan DAVID David
-autocmd filetype c,cpp syn cluster cCommentGroup    add=myTODO,myNOTE,myLEARN,myNAME,myDEBUG
+autocmd filetype c,cpp syn cluster cCommentGroup    add=myTODO,myNOTE,myLEARN,myNAME,myDEBUG,myREF,myLINK
 
-highlight myDEBUG   cterm=bold              ctermfg=Green       ctermbg=none
-highlight myTODO    cterm=bold              ctermfg=Yellow      ctermbg=none
-highlight myNOTE    cterm=bold              ctermfg=Blue        ctermbg=none
-highlight myLEARN   cterm=bold,standout     ctermfg=Yellow      ctermbg=none
-highlight myNAME    cterm=italic,underline  ctermfg=DarkGreen   ctermbg=none
-highlight myREF     cterm=bold,underline    ctermfg=225         ctermbg=none
-highlight link myLINK myREF
+highlight myDEBUG   cterm=bold              ctermfg=Green       ctermbg=none    gui=bold              guifg=LightGoldenrod1     guibg=NONE
+highlight myTODO    cterm=bold              ctermfg=Yellow      ctermbg=none    gui=bold              guifg=SkyBlue             guibg=NONE
+highlight myNOTE    cterm=bold              ctermfg=Blue        ctermbg=none    gui=bold              guifg=LightSteelBlue1     guibg=NONE
+highlight myLEARN   cterm=bold,standout     ctermfg=Yellow      ctermbg=none    gui=bold,standout     guifg=Wheat               guibg=NONE
+highlight myNAME    cterm=italic,underline  ctermfg=DarkGreen   ctermbg=none    gui=italic,underline  guifg=fg                  guibg=NONE
+highlight myREF     cterm=bold,underline    ctermfg=DarkGreen   ctermbg=none    gui=bold,underline    guifg=DarkOliveGreen1     guibg=NONE
+highlight myLINK    cterm=italic,underline  ctermfg=DarkGreen   ctermbg=none    gui=italic,underline  guifg=DarkOliveGreen1     guibg=NONE
 " }}}
 
 " {{{ Custom Command
@@ -241,9 +249,13 @@ command! GitBash call OpenGitBash()
 " }}}
 
 " {{{ Misc
-"""" Json Formatter
+" Json Formatter
 function! FormatJSON()
   %!python -m json.tool
 endfunction
 autocmd filetype json nnoremap <leader>f :call FormatJSON()<CR>
+
+" Color palette
+command! Palette call palette#Palette()
+command! PaletteCompact call palette#PaletteCompact()
 " }}}
