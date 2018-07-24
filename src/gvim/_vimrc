@@ -246,6 +246,9 @@ function! OpenGitBash()
     endif
 endfunction
 command! GitBash call OpenGitBash()
+
+" Open a windows explorer of current directory
+command! WinExplore execute '!start explorer .'
 " }}}
 
 " {{{ Misc
