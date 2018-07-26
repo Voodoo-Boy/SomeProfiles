@@ -18,7 +18,7 @@ highlight Cursor guifg=white guibg=black
 set guicursor+=n-v-i-c:blinkwait600-blinkon600-blinkoff350    "blinkwait: delay before cursor start blinking, blinkon/off: cursor the time that show/not show
 
 " Auto copy text selected by mouse
-set guioptions+=a
+set guioptions+=A
 
 " Menu Setting
 source $VIMRUNTIME/delmenu.vim
@@ -62,8 +62,15 @@ set scrolloff=0                     " force no line above and below cursor when 
 set autochdir                       " auto change current work directory to the location of current file
 cd $HOME                            " set default working directory to $HOME directory of user
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
-set encoding=latin1                 " default encoding of input
-" set fileencoding=latin1           " default encoding for save file
+if has("multi_byte")
+    if &termencoding == ""
+        let &termencoding = &encoding
+    endif
+    set encoding=utf-8
+    setglobal fileencoding=utf-8
+    "setglobal bomb
+    set fileencodings=ucs-bom,utf-8,latin1
+endif
 set lcs=tab:>-,trail:-      " Set chars to display invisible characters (:list! to toggle invisible symbol display)
 
 " Remeber last exit postion for file
@@ -128,6 +135,8 @@ let g:lightline = {
       \ },
       \ 'colorscheme': 'snow_dark'
       \ }
+" vim-better-whitespace
+let g:better_whitespace_guicolor='lavender'         " Custom highlight color for gui
 
 " Color Schemes Setting
 " snow
@@ -249,6 +258,12 @@ command! GitBash call OpenGitBash()
 
 " Open a windows explorer of current directory
 command! WinExplore execute '!start explorer .'
+
+" Remove all ^M
+command! UnixEOL execute '%s///g'
+
+" Alias
+cabbrev cdwsa cd C:\Users\t-hawan\Source\Repos\WSAMicrosoftDoc
 " }}}
 
 " {{{ Misc
