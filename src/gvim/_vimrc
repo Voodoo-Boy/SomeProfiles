@@ -37,7 +37,7 @@ set splitright                      " Split vertical window to right
 set winaltkeys=no                   " Disable alt shortcut on windows
 au GUIEnter * sim ~x                " Maximum window when gvim startup
 au SourceCmd _vimrc sim ~x          " Maximum window when relaod .vimrc
-set guifont=Ubuntu\ Mono:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
+set guifont=Hack:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
 " }}}
 
 " {{{ General
@@ -263,7 +263,7 @@ command! WinExplore execute '!start explorer .'
 command! UnixEOL execute '%s///g'
 
 " Alias
-cabbrev cdwsa cd C:\Users\t-hawan\Source\Repos\WSAMicrosoftDoc
+"cabbrev cdwsa cd C:\Users\t-hawan\Source\Repos\WSAMicrosoftDoc
 " }}}
 
 " {{{ Misc
