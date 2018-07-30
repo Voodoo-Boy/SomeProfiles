@@ -98,6 +98,9 @@ augroup wanghan_vim
     " Use cpp syntax for c# to enable folding
     au Filetype cs setlocal syntax=cpp
 augroup end
+
+" Set make tool.
+set makeprg=build
 " }}}
 
 " {{{ Plugin
