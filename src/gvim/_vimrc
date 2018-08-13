@@ -1,8 +1,7 @@
 " Desc: wanghan's _vimrc for gvim windows
 " Date: 2018.07.23
 
-" TODO
-" 1. build
+" TODO support input parameter, path
 
 " {{{ Gvim
 " language
@@ -258,6 +257,14 @@ function! OpenGitBash()
     endif
 endfunction
 command! GitBash call OpenGitBash()
+
+" Run devenv to debugger
+function! OpenDebugger()
+    cd ../build
+    silent !devenv GorillaScreenCapturer.exe
+    cd ../src
+endfunction
+command! Debug call OpenDebugger()
 
 " Open a windows explorer of current directory
 command! WinExplore execute '!start explorer .'
