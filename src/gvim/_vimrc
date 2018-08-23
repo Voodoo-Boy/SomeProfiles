@@ -59,7 +59,6 @@ set cursorline                      " highlight current line
 set laststatus=2                    " always display status line
 set scrolloff=0                     " force no line above and below cursor when scrolling
 set autochdir                       " auto change current work directory to the location of current file
-cd $HOME                            " set default working directory to $HOME directory of user
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
 if has("multi_byte")
     if &termencoding == ""

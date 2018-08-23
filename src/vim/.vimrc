@@ -30,7 +30,6 @@ set cursorline                      " highlight current line
 set laststatus=2                    " always display status line
 set scrolloff=0                     " force no line above and below cursor when scrolling
 set autochdir                       " auto change current work directory to the location of current file
-cd $HOME                            " set default working directory to $HOME directory of user
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
 if has("multi_byte")
     if &termencoding == ""
@@ -176,45 +175,6 @@ else
     let VimrcFile="~/.vimrc"
 endif
 command! Vimrc execute 'e '.VimrcFile
-
-" Open git-bash
-" Get both x64/x86 "Program Files" path
-if !exists("g:ProgramFilesPath64")
-    let g:ProgramFilesPath64=substitute(substitute(system("echo %ProgramW6432%"), '[\r\n]\+', '', ''), '\s\+$', '', '')
-endif
-if !exists("g:ProgramFilesPath32")
-    let g:ProgramFilesPath32=substitute(substitute(system("echo %ProgramFiles(x86)%"), '[\r\n]\+', '', ''), '\s\+$', '', '')
-endif
-function! OpenGitBash()
-    if has('win32')
-        let a:GitExeutePath="/Git/git-bash.exe"
-        " Check if git-bash is installed.
-        if !empty(g:ProgramFilesPath64) && !empty(glob(g:ProgramFilesPath64.a:GitExeutePath))
-            let a:DefaultShell=&shell
-            let &shell=g:ProgramFilesPath64.a:GitExeutePath
-            silent! shell
-            let &shell=a:DefaultShell
-        elseif !empty(g:ProgramFilesPath32) && !empty(glob(g:ProgramFilesPath32.a:GitExeutePath))
-            let a:DefaultShell=&shell
-            let &shell=g:ProgramFilesPath32.a:GitExeutePath
-            silent! shell
-            let &shell=a:DefaultShell
-        else
-            echo "git-bash not installed!"
-        endif
-    else
-        echo "Not on win32 platform!"
-    endif
-endfunction
-command! GitBash call OpenGitBash()
-
-" Run devenv to debugger
-function! OpenDebugger()
-    cd ../build
-    silent !devenv GorillaScreenCapturer.exe
-    cd ../src
-endfunction
-command! Debug call OpenDebugger()
 
 " Open a windows explorer of current directory
 command! WinExplore execute '!start explorer .'
