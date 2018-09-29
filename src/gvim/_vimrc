@@ -124,6 +124,7 @@ Plug 'ntpeters/vim-better-whitespace'   " display annoying whitespaces.     'htt
 
 " Color Schemes
 Plug 'nightsense/snow'              " 'https://github.com/nightsense/snow'
+Plug 'Heorhiy/VisualStudioDark.vim' " 'https://github.com/nightsense/snow'
 " Plug 'logico-dev/typewriter'        " 'https://github.com/logico-dev/typewriter'
 call plug#end()
 
@@ -133,15 +134,14 @@ call plug#end()
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-      \ },
-      \ 'colorscheme': 'snow_dark'
+      \ }
       \ }
 " vim-better-whitespace
-let g:better_whitespace_guicolor='lavender'         " Custom highlight color for gui
+" let g:better_whitespace_guicolor='lavender'         " Custom highlight color for gui
 
 " Color Schemes Setting
 " snow
-colorscheme snow
+colorscheme VisualStudioDark
 set background=dark     " backgournd=light
 " }}}
 
