@@ -36,7 +36,7 @@ set splitright                      " Split vertical window to right
 set winaltkeys=no                   " Disable alt shortcut on windows
 au GUIEnter * sim ~x                " Maximum window when gvim startup
 au SourceCmd _vimrc sim ~x          " Maximum window when relaod .vimrc
-set guifont=Hack:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
+set guifont=Liberation\ Mono:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
 " }}}
 
 " {{{ General
@@ -110,20 +110,16 @@ endif
 
 call plug#begin()
 " Plugins
-Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find file and open.         'https://github.com/ctrlpvim/ctrlp.vim'
-Plug 'itchyny/lightline.vim'            " great status line.                'https://github.com/itchyny/lightline.vim'
-Plug 'tomtom/tcomment_vim'              " comment wrapped region.           'https://github.com/tomtom/tcomment_vim'
-Plug 'ntpeters/vim-better-whitespace'   " display annoying whitespaces.     'https://github.com/ntpeters/vim-better-whitespace'
-" Plug 'scrooloose/nerdtree'            " File explorer.
-" Plug 'lrvick/Conque-Shell'            " run shell inside vim.
-" Plug 'ervandew/supertab'              " tab to complete.
-"Plug 'vim-syntastic/syntastic'         " syntax checker.
+Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find file and open.
+Plug 'itchyny/lightline.vim'            " great status line.
+Plug 'tomtom/tcomment_vim'              " comment wrapped region.
+Plug 'ntpeters/vim-better-whitespace'   " display annoying whitespaces.
+Plug 'scrooloose/nerdtree'              " File explorer.
+Plug 'vim-scripts/a.vim'                " Switch between .h and .c/.cpp file
 " Plug 'majutsushi/tagbar'              " tags in side bar, function list.
-" Plug 'jiangmiao/auto-pairs'           " complete braces automatically.
 "Plug 'terryma/vim-multiple-cursors'    " multiple cursors.
 
 " Color Schemes
-Plug 'nightsense/snow'              " 'https://github.com/nightsense/snow'
 Plug 'Heorhiy/VisualStudioDark.vim' " 'https://github.com/nightsense/snow'
 " Plug 'logico-dev/typewriter'        " 'https://github.com/logico-dev/typewriter'
 call plug#end()
@@ -136,13 +132,16 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
       \ }
+
 " vim-better-whitespace
 " let g:better_whitespace_guicolor='lavender'         " Custom highlight color for gui
 
-" Color Schemes Setting
-" snow
-colorscheme VisualStudioDark
-set background=dark     " backgournd=light
+" NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" a.vim
+nnoremap <C-h> :AV<CR>
+
 " }}}
 
 " {{{ Key Mapping
@@ -181,6 +180,8 @@ nnoremap <leader>i :set list!<CR>
 " }}}
 
 " {{{ Custom Highlight
+colorscheme VisualStudioDark
+
 " Clang Comment
 autocmd filetype c,cpp syn match   myLINK   "https\=://\S*"
 autocmd filetype c,cpp syn keyword myREF    contained REF
@@ -272,7 +273,7 @@ command! WinExplore execute '!start explorer .'
 command! UnixEOL execute '%s///g'
 
 " Alias
-"cabbrev cdwsa cd C:\Users\t-hawan\Source\Repos\WSAMicrosoftDoc
+cabbrev cdvs cd C:\Users\t-hawan\Source\Repos\Nameless\Nameless
 " }}}
 
 " {{{ Misc
