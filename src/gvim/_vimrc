@@ -1,7 +1,8 @@
 " Desc: wanghan's _vimrc for gvim windows
 " Date: 2018.07.23
 
-" TODO support input parameter, path
+" TODO
+" 1. build
 
 " {{{ Gvim
 " language
@@ -36,7 +37,7 @@ set splitright                      " Split vertical window to right
 set winaltkeys=no                   " Disable alt shortcut on windows
 au GUIEnter * sim ~x                " Maximum window when gvim startup
 au SourceCmd _vimrc sim ~x          " Maximum window when relaod .vimrc
-set guifont=Hack:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
+set guifont=Liberation\ Mono:h10:cDEFAULT,Consolas:h10:cDEFAULT,FixedSys:h10:cDEFAULT
 " }}}
 
 " {{{ General
@@ -59,6 +60,7 @@ set cursorline                      " highlight current line
 set laststatus=2                    " always display status line
 set scrolloff=0                     " force no line above and below cursor when scrolling
 set autochdir                       " auto change current work directory to the location of current file
+cd $HOME                            " set default working directory to $HOME directory of user
 set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936   " set candidate encodings for an existing file.
 if has("multi_byte")
     if &termencoding == ""
@@ -272,7 +274,7 @@ command! WinExplore execute '!start explorer .'
 command! UnixEOL execute '%s///g'
 
 " Alias
-"cabbrev cdwsa cd C:\Users\t-hawan\Source\Repos\WSAMicrosoftDoc
+cabbrev cdvs cd C:\Users\wanghan\Documents\Visual Studio 2017\Projects\Direct3DPipeline\Direct3DPipeline
 " }}}
 
 " {{{ Misc
