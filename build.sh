@@ -8,8 +8,7 @@ Prompt()
 SetVimProfile()
 {
 	echo "Set vim profile..."
-	cp -if src/vimrc ~/.vimrc
-#	cp -rif src/vim ~/.vim
+	cp -if src/vim/.vimrc ~/.vimrc
 }
 
 SetGvimProfile()
@@ -17,7 +16,6 @@ SetGvimProfile()
 	echo "Set gvim profile..."
 	cp -if src/gvim/_vimrc ~/_vimrc
 	cp -rif src/gvim/vimfiles ~/vimfiles
-#	cp -rif src/vim ~/.vim
 }
 
 SetBashProfile()
@@ -32,6 +30,7 @@ if [ "$1" = "all" ]; then
 	SetBashProfile
 elif [ "$1x" = "x" ] || ["$1" = "vim" ]; then
 	SetVimProfile
+	SetBashProfile
 elif [ "$1" = "gvim" ]; then
 	SetGvimProfile
 elif [ "$1" = "bash" ]; then
