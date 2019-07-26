@@ -1,9 +1,8 @@
+all: vim bash
+
 vim:
 	@echo "Set vim profile..."
-	@cp -if src/vimrc ~/.vimrc
-	@cp -rif src/vim ~/.vim
-
-all: vim bash
+	@cp -if src/vim/.vimrc ~/.vimrc
 
 bash:
 	@echo "Set bash profile..."
