@@ -37,11 +37,11 @@ alias todo='vi /home/wanghan/notes/todo.mynote'
 alias mcs='vi /home/wanghan/notes/mycheatsheet.mynote'
 alias memo='vi /home/wanghan/notes/memo.mynote'
 
-alias ali='ssh wanghan@39.107.109.141'
+alias ali='ssh wanghan@104.41.184.211'
 export aliip=39.107.109.141
 export GITURL=http://Gorilla@39.107.109.141:12500
 export GITHUB=https://github.com/Voodoo-Boy
-export AZVPS=wanghan@104.41.164.43
+export AZVPS=wanghan@23.100.101.72
 
 alias cdvs='cd ~/Documents/"Visual Studio 2017"/Projects'
 export VSDIR='~/Documents/"Visual Studio 2017"/Projects'
