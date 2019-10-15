@@ -45,3 +45,4 @@ export AZVPS=wanghan@23.100.101.72
 
 alias cdvs='cd ~/Documents/"Visual Studio 2017"/Projects'
 export VSDIR='~/Documents/"Visual Studio 2017"/Projects'
+cd
