@@ -43,6 +43,5 @@ export GITURL=http://Gorilla@39.107.109.141:12500
 export GITHUB=https://github.com/Voodoo-Boy
 export AZVPS=wanghan@23.100.101.72
 
-alias cdvs='cd ~/Documents/"Visual Studio 2017"/Projects'
-export VSDIR='~/Documents/"Visual Studio 2017"/Projects'
+alias cdvs='cd ~/GitDir'
 cd
