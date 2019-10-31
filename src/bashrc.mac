@@ -1,0 +1,20 @@
+############################### my settings ###############################33
+
+# Add current git branch to prompt
+parse_git_branch()
+{
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+# aliases
+alias ll='ls -lF'
+alias l.='ls -d .*'
+
+alias ali='ssh wanghan@104.41.184.211'
+export aliip=39.107.109.141
+export GITURL=http://Gorilla@39.107.109.141:12500
+export GITHUB=https://github.com/Voodoo-Boy
+export AZVPS=wanghan@23.100.101.72
+
+alias cdvs='cd ~/gitdir'
