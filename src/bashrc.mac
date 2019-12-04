@@ -12,9 +12,10 @@ alias ll='ls -lF'
 alias l.='ls -d .*'
 
 alias ali='ssh wanghan@104.41.184.211'
+alias azure='ssh -o ServerAliveInterval=10 wanghan@23.101.15.190'
 export aliip=39.107.109.141
 export GITURL=http://Gorilla@39.107.109.141:12500
 export GITHUB=https://github.com/Voodoo-Boy
-export AZVPS=wanghan@23.100.101.72
+export AZVPS=wanghan@23.101.15.190
 
 alias cdvs='cd ~/gitdir'
